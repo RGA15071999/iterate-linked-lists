@@ -36,10 +36,29 @@ class Node {
     }
     this.data = element;
   }
+
+  reverse() {
+    let iteration_count = this.length() - 1;
+    let itPointer = this;
+    let pointer = this;
+    while(pointer.next !== null) {
+      for(let i = 0; i < iteration_count; i++) {
+        let buffer = itPointer.data;
+        itPointer.data = itPointer.next.data;
+        itPointer.next.data = buffer;
+        itPointer = itPointer.next;
+      }
+
+      itPointer = this;
+      pointer = pointer.next;
+      iteration_count--;
+    }
+  }
 };
 
 let list = new Node('1');
 list.prepend('2');
 list.prepend('3');
 list.prepend('4');
+list.reverse();
 console.log(list);
