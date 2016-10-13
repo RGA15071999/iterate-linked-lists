@@ -38,21 +38,29 @@ class Node {
   }
 
   reverse() {
-    let iteration_count = this.length() - 1;
-    let itPointer = this;
-    let pointer = this;
-    while(pointer.next !== null) {
-      for(let i = 0; i < iteration_count; i++) {
-        let buffer = itPointer.data;
-        itPointer.data = itPointer.next.data;
-        itPointer.next.data = buffer;
-        itPointer = itPointer.next;
-      }
-
-      itPointer = this;
-      pointer = pointer.next;
-      iteration_count--;
+    // let iteration_count = this.length() - 1;
+    // let itPointer = this;
+    // let pointer = this;
+    // while(pointer.next !== null) {
+    //   for(let i = 0; i < iteration_count; i++) {
+    //     let buffer = itPointer.data;
+    //     itPointer.data = itPointer.next.data;
+    //     itPointer.next.data = buffer;
+    //     itPointer = itPointer.next;
+    //   }
+    //
+    //   itPointer = this;
+    //   pointer = pointer.next;
+    //   iteration_count--;
+    // }
+    let new_list = new Node(this.data);
+    let iter = this;
+    while(iter) {
+      new_list.prepend(this.next);
+      iter = this.next;
     }
+
+    return new_list;
   }
 };
 
