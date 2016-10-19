@@ -40,10 +40,27 @@ class Node {
 
     return new_list;
   }
+
+  get(index) {
+    let pointer = this;
+    let currentIndex = 0;
+    while(pointer.next !== null) {
+      if(currentIndex === index) {
+        return pointer.data
+      }
+      pointer = pointer.next;
+      currentIndex++;
+    }
+  }
 };
 
-let list = new Node('1');
-list.prepend('2');
-list.prepend('3');
-list.prepend('4');
-console.log(list.reverse());
+const listOf = function(array) {
+  let linkedList = new Node(array[0]);
+  for(let i = 1; i < array.length; i++) {
+    linkedList.append(array[i]);
+  }
+  return linkedList;
+}
+
+const a = listOf([1,2,'a',4]);
+console.log(linkedList.length());
