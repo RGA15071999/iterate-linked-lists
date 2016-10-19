@@ -24,40 +24,18 @@ class Node {
   }
 
   prepend(element) {
-    this.append(element);
-    let pointer = this;
-    let next_item = pointer.data;
-    let buffer = pointer.data
-    while(pointer.next !== null) {
-      buffer = next_item;
-      next_item = pointer.next.data;
-      pointer.next.data = buffer;
-      pointer = pointer.next
-    }
+    let new_element = new Node(this.data);
+    new_element.next = this.next;
     this.data = element;
+    this.next = new_element;
   }
 
   reverse() {
-    // let iteration_count = this.length() - 1;
-    // let itPointer = this;
-    // let pointer = this;
-    // while(pointer.next !== null) {
-    //   for(let i = 0; i < iteration_count; i++) {
-    //     let buffer = itPointer.data;
-    //     itPointer.data = itPointer.next.data;
-    //     itPointer.next.data = buffer;
-    //     itPointer = itPointer.next;
-    //   }
-    //
-    //   itPointer = this;
-    //   pointer = pointer.next;
-    //   iteration_count--;
-    // }
     let new_list = new Node(this.data);
     let iter = this;
-    while(iter) {
-      new_list.prepend(this.next);
-      iter = this.next;
+    while(iter.next) {
+      new_list.prepend(iter.next.data);
+      iter = iter.next;
     }
 
     return new_list;
@@ -68,5 +46,4 @@ let list = new Node('1');
 list.prepend('2');
 list.prepend('3');
 list.prepend('4');
-list.reverse();
-console.log(list);
+console.log(list.reverse());
